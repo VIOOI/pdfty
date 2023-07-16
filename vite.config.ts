@@ -16,7 +16,7 @@ export default defineConfig({
 			"@organisms": path.resolve(__dirname, "./src/components/organisms"),
 			"@templates": path.resolve(__dirname, "./src/components/templates"),
 			"@pages": path.resolve(__dirname, "./src/components/pages"),
-			"@store": path.resolve(__dirname, "./src/stores"),
+			"@stores": path.resolve(__dirname, "./src/stores"),
 			"@app": path.resolve(__dirname, "./src/app"),
 			"@tests": path.resolve(__dirname, "./src/tests"),
 			"@utils": path.resolve(__dirname, "./src/utils"),
