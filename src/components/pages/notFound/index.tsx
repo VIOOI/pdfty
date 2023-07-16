@@ -2,7 +2,8 @@ import { createRoute, redirect } from "atomic-router";
 import { createEvent } from "effector";
 import { onCleanup } from "solid-js";
 
-import { appRoute } from "./app";
+import { appRoute } from "../app";
+import { sNotFound } from "./notFound.css";
 
 export const notFoundRoute = createRoute();
 
@@ -19,10 +20,8 @@ export const NotFound = () => {
 	onCleanup(() => clearTimeout(timeRedirect));
 
 	return (
-		<div
-			class="w-screen h-screen flex-center"
-		>
-			<h1 class="text-6xl font-[Roboto]">NotFound</h1>
+		<div class={sNotFound()} >
+			<h1>NotFound</h1>
 		</div>
 	);
 };
