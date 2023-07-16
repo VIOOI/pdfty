@@ -16,8 +16,10 @@ export const Header: Component = () => {
 		<Link to="/" innerHTML={logo}> </Link>
 		<Menu />
 		<div class="loging">
-			<Button type="light" rounded="lg" >Login</Button>
-			<Button type="primary" rounded="lg" >Login</Button>
+			<dvi></dvi>
+			<dvi></dvi>
 		</div>
 	</div>;
 };
+			// <Button type="light" rounded="lg" >Login</Button>
+			// <Button type="primary" rounded="lg" >Login</Button>

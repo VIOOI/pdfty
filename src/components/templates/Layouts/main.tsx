@@ -13,7 +13,6 @@ export const MainLayout: Component<Props> = ({ children }) => {
 		return (
 			<>
 				<Header />
-				<h1>Hello</h1>
 				{ children }
 			</>
 		);

@@ -1,5 +1,7 @@
 
 import { appRoute } from "@pages/app";
+import { convertFromRoute } from "@pages/convert_from";
+import { convertToRoute } from "@pages/convert_to";
 import { notFoundRoute } from "@pages/notFound";
 import { createHistoryRouter, RouteInstance } from "atomic-router";
 import { createBrowserHistory } from "history";
@@ -12,6 +14,8 @@ type RouteType = Array<{
 
 export const routes: RouteType = [
 	{ path: "/", route: appRoute },
+	{ path: "/convert_to/:tool", route: convertToRoute },
+	{ path: "/convert_from/:tool", route: convertFromRoute },
 ];
 
 export const history = createBrowserHistory();

@@ -5,7 +5,7 @@ import { useUnit } from "effector-solid";
 
 import { Component, For } from "solid-js";
 
-import bgImage from "../../media/icons/main/BG.png";
+import bgImage from "@media/icons/main/BG.png";
 
 import { homePageStyles } from "./app.css";
 

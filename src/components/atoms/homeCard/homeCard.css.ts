@@ -14,9 +14,15 @@ export const cardStyle = css({
 	"& > a": {
 		textDecoration: "none",
 		color: "black",
-		"& > div svg": {
-			width: "56px",
-			height: "56px",
+		"& > div": {
+			padding: "6px",
+			borderRadius: "10px",
+			background: "#F8F8F8",
+			width: "61.6px",
+			"& svg": {
+				width: "56px",
+				height: "56px",
+			},
 		},
 		"& svg": {
 			width: "2.75rem",

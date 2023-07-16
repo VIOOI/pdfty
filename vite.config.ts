@@ -20,6 +20,7 @@ export default defineConfig({
 			"@app": path.resolve(__dirname, "./src/app"),
 			"@tests": path.resolve(__dirname, "./src/tests"),
 			"@utils": path.resolve(__dirname, "./src/utils"),
+			"@media": path.resolve(__dirname, "./src/media/"),
 		},
 	},
 	server: {
