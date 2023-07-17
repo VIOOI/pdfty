@@ -6,7 +6,7 @@ export const homePageStyles = css({
 	flexDirection: "column",
 	justifyContent: "center",
 	alignItems: "center",
-	paddingTop: "2.5rem",
+	paddingTop: "12.5rem",
 	backgroundSize: "100vw",
 	backgroundPositionY: "-10vh",
 	backgroundRepeat: "no-repeat",

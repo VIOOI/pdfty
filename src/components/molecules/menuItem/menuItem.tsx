@@ -1,5 +1,6 @@
 import { createSignal, onCleanup, Show, For, ParentComponent, createEffect } from "solid-js";
 import { Component, JSX } from "solid-js";
+import { useI18n } from "@solid-primitives/i18n";
 
 import { Categorie } from "../../../stores/categories";
 
@@ -14,7 +15,8 @@ type Props = {
 };
 
 export const Item: ParentComponent<Props> = ({ categories, children }) => {
-	// используйте createSignal для управления состоянием
+	const [ t ] = useI18n();
+
 	const [ isOpen, setIsOpen ] = createSignal(false);
 
 	const handleMouseOver = () => { setIsOpen(true); };
@@ -30,7 +32,7 @@ export const Item: ParentComponent<Props> = ({ categories, children }) => {
 					pointer: categories.length > 0,
 				}}
 			>
-				{ children }
+				{ t(`menu.${children}`) }
 				<Show when={categories.length > 0}>
 					<div innerHTML={poligonIcon} class="poligon" />
 				</Show>

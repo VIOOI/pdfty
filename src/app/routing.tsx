@@ -4,7 +4,7 @@ import { convertFromRoute } from "@pages/convert_from";
 import { convertToRoute } from "@pages/convert_to";
 import { notFoundRoute } from "@pages/notFound";
 import { createHistoryRouter, RouteInstance } from "atomic-router";
-import { createBrowserHistory } from "history";
+import { createBrowserHistory, createHashHistory } from "history";
 
 type RouteType = Array<{
 	path: string,
@@ -18,7 +18,8 @@ export const routes: RouteType = [
 	{ path: "/convert_from/:tool", route: convertFromRoute },
 ];
 
-export const history = createBrowserHistory();
+
+export const history = createHashHistory();
 
 export const router = createHistoryRouter({
 	routes,

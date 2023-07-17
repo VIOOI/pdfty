@@ -11,8 +11,13 @@ import { ConvertTo, convertToRoute } from "@pages/convert_to";
 
 import { convertFromRoute, ConvertFrom } from "@pages/convert_from";
 
+import { createSignal } from "solid-js";
+
+import { createI18nContext, I18nContext } from "@solid-primitives/i18n";
+
 import { router } from "./routing";
 import { globalStyle } from "./globalStyle";
+import { dist } from "./locale";
 
 const RouterView = createRoutesView({
 	routes: [
@@ -24,12 +29,16 @@ const RouterView = createRoutesView({
 });
 
 
+const value = createI18nContext(dist, "ru");
+
 render(() => {
 	globalStyle();
 	return (
-		<RouterProvider router={router} >
-			<RouterView />
-		</RouterProvider>
+		<I18nContext.Provider value={value}>
+			<RouterProvider router={router} >
+				<RouterView />
+			</RouterProvider>
+		</I18nContext.Provider>
 	);
 }, document.getElementById("root") as HTMLElement);
 

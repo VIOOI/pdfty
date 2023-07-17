@@ -22,7 +22,7 @@ export const Menu: Component = () => {
 						</Item>
 					</Show>
 					<Show when={item.link !== ""}> 
-						<Link to={item.link}>
+						<Link to={`index.html#${item.link}`}>
 							<Item categories={item.submenu} >
 								{ item.name }
 							</Item>

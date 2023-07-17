@@ -24,5 +24,5 @@ export const Button: ParentComponent<Props> =
 			</div>
 		);
 
-		return link ? <Link to={link}>{btn}</Link> : btn;
+		return link ? <Link to={`index.html#${link}`}>{btn}</Link> : btn;
 	};

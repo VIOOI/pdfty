@@ -10,4 +10,4 @@ export const sNotFound = css({
 		fontSize: "32px",
 		fontFamily: "Gilroy",
 	},
-})
+});

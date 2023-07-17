@@ -12,6 +12,7 @@ import { HandleClickArgs, MergeHandleArgs } from "./utils";
 import { InfoComponent } from "./info";
 
 import { convertToRoute, Files } from ".";
+import { useI18n } from "@solid-primitives/i18n";
 
 
 
@@ -25,6 +26,7 @@ export const RightMenuComponent: VoidComponent<{
 	isActive,
 }) => {
 	const params = useUnit(convertToRoute.$params);
+	const [ t ] = useI18n();
 
 	return (
 		<RightMenu.Menu> 
@@ -37,13 +39,11 @@ export const RightMenuComponent: VoidComponent<{
 			<RightMenu.Options>
 				<div class={sOptions()}>
 					<header>
-						<h3>Title</h3>
+						<h3>{ t(`tools.${params().tool}_to_pdf.title`) }</h3>
 					</header>
 					<main>
 						<div class="info">
-										Please, select more PDF files by clicking again on 
-										’Select PDF files’.Select multiple files by 
-										mantaining pressed ’Ctrl’
+							{ t(`tools.${params().tool}_to_pdf.rightMenu.select`) }
 						</div>
 						<div
 							class="handle_buttons"

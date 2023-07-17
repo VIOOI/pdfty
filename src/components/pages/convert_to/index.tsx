@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createRoute } from "atomic-router";
 import { useUnit } from "effector-solid";
-import { createSignal, For, Show, VoidComponent } from "solid-js";
+import { createEffect, createSignal, For, on, Show, VoidComponent } from "solid-js";
 import { createStore } from "solid-js/store";
 
 import { Button } from "@atoms/botton/button";
@@ -19,6 +19,7 @@ import { $icons } from "@stores/icons";
 import { RightMenuComponent } from "./rightMenu";
 
 import { downloadFile, handleClick, mergeHandle } from "./utils";
+import { useI18n } from "@solid-primitives/i18n";
 
 export const convertToRoute = createRoute<{ tool: string }>();
 
@@ -33,22 +34,23 @@ export type Files = {
 
 
 
-const InitiateConversion = ({ params, setFiles, files }) => (
-	<Show when={files.value.length === 0}>
+const InitiateConversion = ({ params, setFiles, files }) => {
+	const [ t ] = useI18n();
+	return <Show when={files.value.length === 0}>
 		<LoadingPage>
-			<h1>Convert to {params().tool}</h1>
-			<p>Convert your PDF to WORD documents with incredible accuracy</p>
+			<h1>{ t(`tools.${params().tool}_to_pdf.title`) }</h1>
+			<p>{ t(`tools.${params().tool}_to_pdf.description`) }</p>
 			<Button 
 				type="primary"
 				rounded="md"
 				onClick={() => handleClick({ setFiles, files, name: params().tool })}
 			>
-        Select File
+        { t(`tools.${params().tool}_to_pdf.buttom`) }
 			</Button>
-			<p class="drop">or Drop</p>
+			<p class="drop">{ t(`tools.${params().tool}_to_pdf.drop`) }</p>
 		</LoadingPage>
-	</Show>
-);
+	</Show>;
+};
 
 const CardEditor = ({ params, files, deleteCard, setFiles, setProcess, setIsReadStream, setConvertFile, convertFile, isReadStream }) => {
 	const icons = useUnit($icons);
@@ -114,6 +116,11 @@ export const ConvertTo: VoidComponent = () => {
 	const params = useUnit(convertToRoute.$params);
 
 	const deleteCard = (id: string) => () => setFiles("value", f => f.filter(f => f.id !== id));
+
+	createEffect(on(params, () => {
+		setFiles("value", []); 
+		setConvertFile("value", []);
+	}));
 
 	return (
 		<div>

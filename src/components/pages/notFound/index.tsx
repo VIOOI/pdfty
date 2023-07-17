@@ -3,6 +3,7 @@ import { createEvent } from "effector";
 import { onCleanup } from "solid-js";
 
 import { appRoute } from "../app";
+
 import { sNotFound } from "./notFound.css";
 
 export const notFoundRoute = createRoute();

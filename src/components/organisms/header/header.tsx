@@ -13,7 +13,7 @@ import { header } from "./header.css";
 
 export const Header: Component = () => {
 	return <div class={header()}>
-		<Link to="/" innerHTML={logo}> </Link>
+		<Link to="index.html#/" innerHTML={logo}> </Link>
 		<Menu />
 		<div class="loging">
 			<dvi></dvi>
@@ -21,5 +21,5 @@ export const Header: Component = () => {
 		</div>
 	</div>;
 };
-			// <Button type="light" rounded="lg" >Login</Button>
-			// <Button type="primary" rounded="lg" >Login</Button>
+// <Button type="light" rounded="lg" >Login</Button>
+// <Button type="primary" rounded="lg" >Login</Button>

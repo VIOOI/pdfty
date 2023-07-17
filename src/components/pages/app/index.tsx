@@ -7,6 +7,8 @@ import { Component, For } from "solid-js";
 
 import bgImage from "@media/icons/main/BG.png";
 
+import { useI18n } from "@solid-primitives/i18n";
+
 import { homePageStyles } from "./app.css";
 
 
@@ -14,6 +16,7 @@ export const appRoute = createRoute();
 
 export const App: Component = () => {
 	const icons = useUnit($icons);
+	const [ t ] = useI18n();
 	const cards = [
 		"jpg_to_pdf",
 		"powerpoint_to_pdf",
@@ -32,8 +35,8 @@ export const App: Component = () => {
 				backgroundImage: `url(${bgImage})`,
 			} })}
 		>
-			<h1>Title</h1>
-			<p>Description</p>
+			<h1>{ t("home.title") }</h1>
+			<p>{ t("home.description") }</p>
 			<div>
 				<For each={cards}>{ card => 
 					<HomeCard name={card} icon={icons()[card]} />

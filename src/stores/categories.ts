@@ -46,7 +46,7 @@ export const $categories = createStore<Array<menuList>>([
 				categoryName: "convert_from_pdf",
 				items: [
 					{ name: "pdf_to_jpg", link: "/convert_from/jpg" },
-					{ name: "pdf_to_word", link: "convert_from/word" },
+					{ name: "pdf_to_word", link: "/convert_from/word" },
 					{ name: "pdf_to_powerpoint", link: "/convert_from/powerpoint" },
 					{ name: "pdf_to_excel", link: "/convert_from/excel" },
 					{ name: "pdf_to_pdfa", link: "/convert_from/pdfa" },
