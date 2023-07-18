@@ -115,7 +115,7 @@ type FileStore = { value: Array<Files> };
 
 type ConvertFileStore = { value: Array<string> };
 
-export const ConvertFrom: VoidComponent = () => {
+const ConvertFrom: VoidComponent = () => {
 	const [ files, setFiles ] = createStore<FileStore>({ value: [] });
 	const [ convertFile, setConvertFile ] = createStore<ConvertFileStore>({ value: [] });
 	const [ isReadStream, setIsReadStream ] = createSignal(false);
@@ -143,3 +143,4 @@ export const ConvertFrom: VoidComponent = () => {
 		</div>
 	);
 };
+export default ConvertFrom;

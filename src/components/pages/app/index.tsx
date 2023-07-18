@@ -14,7 +14,7 @@ import { homePageStyles } from "./app.css";
 
 export const appRoute = createRoute();
 
-export const App: Component = () => {
+const App: Component = () => {
 	const icons = useUnit($icons);
 	const [ t ] = useI18n();
 	const cards = [
@@ -45,3 +45,4 @@ export const App: Component = () => {
 		</div>
 	);
 };
+export default App;

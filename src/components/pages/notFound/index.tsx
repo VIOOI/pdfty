@@ -15,7 +15,7 @@ redirect({
 });
 
 
-export const NotFound = () => {
+const NotFound = () => {
 	const timeRedirect = setTimeout(() => { goHomeRedirect(); }, 2000);
 
 	onCleanup(() => clearTimeout(timeRedirect));
@@ -26,3 +26,4 @@ export const NotFound = () => {
 		</div>
 	);
 };
+export default NotFound;

@@ -1,17 +1,16 @@
 import { render } from "solid-js/web";
 import { createRoutesView, RouterProvider } from "atomic-router-solid";
 
-import { App, appRoute } from "@pages/app";
+import { appRoute } from "@pages/app";
 
-import { NotFound } from "@pages/notFound";
 
 import { MainLayout } from "@templates/Layouts/main";
 
-import { ConvertTo, convertToRoute } from "@pages/convert_to";
+import { convertToRoute } from "@pages/convert_to";
 
-import { convertFromRoute, ConvertFrom } from "@pages/convert_from";
+import { convertFromRoute } from "@pages/convert_from";
 
-import { createSignal } from "solid-js";
+import { lazy } from "solid-js";
 
 import { createI18nContext, I18nContext } from "@solid-primitives/i18n";
 
@@ -19,13 +18,17 @@ import { router } from "./routing";
 import { globalStyle } from "./globalStyle";
 import { dist } from "./locale";
 
+const App = lazy(() => import("../components/pages/app")); 
+const ConvertTo = lazy(() => import("../components/pages/convert_to")); 
+const ConvertFrom = lazy(() => import("../components/pages/convert_to")); 
+
 const RouterView = createRoutesView({
 	routes: [
 		{ route: appRoute, view: App, layout: MainLayout },
 		{ route: convertToRoute, view: ConvertTo, layout: MainLayout },
 		{ route: convertFromRoute, view: ConvertFrom, layout: MainLayout },
 	],
-	otherwise: NotFound,
+	otherwise: lazy(() => import("../components/pages/notFound")),
 });
 
 
