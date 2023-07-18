@@ -3,13 +3,14 @@ import { $icons } from "@stores/icons";
 import { createRoute } from "atomic-router";
 import { useUnit } from "effector-solid";
 
-import { Component, For } from "solid-js";
+import { Component, For, onMount } from "solid-js";
 
 import bgImage from "@media/icons/main/BG.png";
 
 import { useI18n } from "@solid-primitives/i18n";
 
 import { homePageStyles } from "./app.css";
+import { optimizeUrl } from "@utils/optimizeUrl";
 
 
 export const appRoute = createRoute();
@@ -29,6 +30,7 @@ const App: Component = () => {
 		"pdf_to_powerpoint",
 		"pdf_to_pdfa",
 	];
+	onMount(() => optimizeUrl());
 	return (
 		<div
 			class={homePageStyles({ css: {

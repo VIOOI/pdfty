@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createRoute } from "atomic-router";
 import { useUnit } from "effector-solid";
-import { createSignal, For, Show, VoidComponent } from "solid-js";
+import { createEffect, createSignal, For, on, onMount, Show, VoidComponent } from "solid-js";
 import { createStore } from "solid-js/store";
 
 import { Button } from "@atoms/botton/button";
@@ -16,9 +16,14 @@ import { trimAndAppendFileType } from "@utils/trimAndAppendFileType";
 
 import { $icons } from "@stores/icons";
 
+// import { useParams } from "@solidjs/router";
+
+import { useI18n } from "@solid-primitives/i18n";
+
 import { RightMenuComponent } from "./rightMenu";
 
 import { downloadFile, handleClick, mergeHandle } from "./utils";
+import { optimizeUrl } from "@utils/optimizeUrl";
 
 export const convertFromRoute = createRoute<{ tool: string }>();
 
@@ -31,27 +36,26 @@ export type Files = {
 	file: File,
 }
 
-
-
-const InitiateConversion = ({ params, setFiles, files }) => (
-	<Show when={files.value.length === 0}>
+const InitiateConversion = ({ params, setFiles, files }) => {
+	const [ t ] = useI18n();
+	return <Show when={files.value.length === 0}>
 		<LoadingPage>
-			<h1>Convert {params().tool} from PDF</h1>
-			<p>Convert your PDF to {params().tool} documents with incredible accuracy</p>
+			<h1>{ t(`tools.pdf_to_${params().tool}.title`) }</h1>
+			<p>{ t(`tools.pdf_to_${params().tool}.description`) }</p>
 			<Button 
 				type="primary"
 				rounded="md"
-				onClick={() => handleClick({ setFiles, files, name: params().tool })}
+				onClick={() => handleClick({ setFiles, files, name: params.tool })}
 			>
-        Select File
+				{ t(`tools.pdf_to_${params().tool}.buttom`) }
 			</Button>
-			<p class="drop">or Drop</p>
+			<p class="drop">{ t(`tools.pdf_to_${params().tool}.drop`) }</p>
 		</LoadingPage>
-	</Show>
-);
+	</Show>;
+};
 
 const CardEditor = ({ params, files, deleteCard, setFiles, setProcess, setIsReadStream, setConvertFile, convertFile, isReadStream }) => {
-	const icons = useUnit($icons);
+	// const icons = useUnit($icons);
 
 	return <Show when={files.value.length > 0 && !isReadStream() && convertFile.value.length === 0}>
 		<EditorCards>
@@ -66,8 +70,8 @@ const CardEditor = ({ params, files, deleteCard, setFiles, setProcess, setIsRead
 				</Card>
 			}</For>
 			<RightMenuComponent
-				functionAdd={() => handleClick({ setFiles, files, name: params().tool })}
-				functionMerge={() => mergeHandle({ setIsReadStream, setProcess, files, setConvertFile, convertFile, name: params().tool })}
+				functionAdd={() => handleClick({ setFiles, files, name: params.tool })}
+				functionMerge={() => mergeHandle({ setIsReadStream, setProcess, files, setConvertFile, convertFile, name: params.tool })}
 				isActive={() => files.value.length >= 1}
 			/>
 		</EditorCards>
@@ -95,6 +99,7 @@ const tools: Record<string, { file: string }> = {
 
 const DownloadFiles = ({ convertFile, isReadStream }) => {
 	const params = useUnit( convertFromRoute.$params );
+	// const params = useParams();
 	return <Show when={!isReadStream() && convertFile.value.length > 0}>
 		<LoadingPage>
 			<h1> Download Files </h1>
@@ -123,6 +128,14 @@ const ConvertFrom: VoidComponent = () => {
 	const params = useUnit(convertFromRoute.$params);
 
 	const deleteCard = (id: string) => () => setFiles("value", f => f.filter(f => f.id !== id));
+
+	onMount(() => optimizeUrl());
+
+
+	createEffect(on(params, () => {
+		setFiles("value", []); 
+		setConvertFile("value", []);
+	}));
 
 	return (
 		<div>

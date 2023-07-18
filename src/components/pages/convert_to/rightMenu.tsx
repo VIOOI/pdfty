@@ -5,6 +5,8 @@ import { VoidComponent } from "solid-js";
 import addFile from "@media/icons/editor/rightMenu/plus.svg?raw";
 import arrowRightCircle from "@media/icons/editor/arrow-right-circle.svg?raw";
 
+import { useI18n } from "@solid-primitives/i18n";
+
 import { sAddButton, sOptions } from "./convert_to.css";
 
 import { HandleClickArgs, MergeHandleArgs } from "./utils";
@@ -12,7 +14,6 @@ import { HandleClickArgs, MergeHandleArgs } from "./utils";
 import { InfoComponent } from "./info";
 
 import { convertToRoute, Files } from ".";
-import { useI18n } from "@solid-primitives/i18n";
 
 
 

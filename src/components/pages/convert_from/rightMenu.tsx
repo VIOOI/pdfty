@@ -5,7 +5,7 @@ import { VoidComponent } from "solid-js";
 import addFile from "@media/icons/editor/rightMenu/plus.svg?raw";
 import arrowRightCircle from "@media/icons/editor/arrow-right-circle.svg?raw";
 
-import { sAddButton, sOptions } from "./convert_to.css";
+import { sAddButton, sOptions } from "./convert_from.css";
 
 import { HandleClickArgs, MergeHandleArgs } from "./utils";
 

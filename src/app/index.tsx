@@ -20,7 +20,7 @@ import { dist } from "./locale";
 
 const App = lazy(() => import("../components/pages/app")); 
 const ConvertTo = lazy(() => import("../components/pages/convert_to")); 
-const ConvertFrom = lazy(() => import("../components/pages/convert_to")); 
+const ConvertFrom = lazy(() => import("../components/pages/convert_from")); 
 
 const RouterView = createRoutesView({
 	routes: [

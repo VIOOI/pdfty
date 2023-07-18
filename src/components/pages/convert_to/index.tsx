@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createRoute } from "atomic-router";
 import { useUnit } from "effector-solid";
-import { createEffect, createSignal, For, on, Show, VoidComponent } from "solid-js";
+import { createEffect, createSignal, For, on, onMount, Show, VoidComponent } from "solid-js";
 import { createStore } from "solid-js/store";
 
 import { Button } from "@atoms/botton/button";
@@ -16,10 +16,12 @@ import { trimAndAppendFileType } from "@utils/trimAndAppendFileType";
 
 import { $icons } from "@stores/icons";
 
+import { useI18n } from "@solid-primitives/i18n";
+
 import { RightMenuComponent } from "./rightMenu";
 
 import { downloadFile, handleClick, mergeHandle } from "./utils";
-import { useI18n } from "@solid-primitives/i18n";
+import { optimizeUrl } from "@utils/optimizeUrl";
 
 export const convertToRoute = createRoute<{ tool: string }>();
 
@@ -45,7 +47,7 @@ const InitiateConversion = ({ params, setFiles, files }) => {
 				rounded="md"
 				onClick={() => handleClick({ setFiles, files, name: params().tool })}
 			>
-        { t(`tools.${params().tool}_to_pdf.buttom`) }
+				{ t(`tools.${params().tool}_to_pdf.buttom`) }
 			</Button>
 			<p class="drop">{ t(`tools.${params().tool}_to_pdf.drop`) }</p>
 		</LoadingPage>
@@ -116,6 +118,9 @@ const ConvertTo: VoidComponent = () => {
 	const params = useUnit(convertToRoute.$params);
 
 	const deleteCard = (id: string) => () => setFiles("value", f => f.filter(f => f.id !== id));
+
+	onMount(() => optimizeUrl());
+
 
 	createEffect(on(params, () => {
 		setFiles("value", []); 
